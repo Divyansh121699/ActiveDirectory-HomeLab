@@ -3,6 +3,7 @@
 ## Splunk Inputs.conf
 
 [WinEventLog://Application]
+
 index = endpoint
 disabled = false
 
