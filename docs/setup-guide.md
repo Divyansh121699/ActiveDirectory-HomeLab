@@ -1,82 +1,73 @@
-# Setup Guide for Active Directory Home Lab
+# Active Directory Home Lab Setup Guide
 
-This guide will walk you through the process of setting up a home lab environment using **Active Directory**, **Splunk**, **Kali Linux**, and other tools. Follow these steps to configure your lab and begin practicing both blue team and red team scenarios.
+This guide walks you through installing and configuring a home lab environment using **Active Directory**, **Splunk**, **Kali Linux**, and other tools in Virtual Machines (VMs).
 
 ---
 
 ## **1. Prerequisites**
-Before starting, ensure you have the following:
-- **Virtualization Software**: VirtualBox or VMware Workstation.
+
+### **Hardware Requirements**
+- **Processor**: 4 cores or higher
+- **RAM**: At least 16GB
+- **Disk Space**: At least 100GB free
+- **Network**: Internet access for downloading software
+
+### **Software Requirements**
+- **Virtualization Software**: [VirtualBox](https://www.virtualbox.org/)
 - **Operating System ISOs**:
-  - Windows Server 2022
-  - Windows 10
-  - Ubuntu Server (for Splunk)
-  - Kali Linux
-- **Hardware Requirements**:
-  - At least 16GB RAM and 100GB storage space.
-  - A system capable of running multiple virtual machines simultaneously.
+  - [Windows Server 2022](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server)
+  - [Windows 10](https://www.microsoft.com/software-download/windows10ISO)
+  - [Ubuntu Server](https://ubuntu.com/download/server)
+  - [Kali Linux](https://www.kali.org/get-kali/)
 
 ---
 
-## **2. Setting Up the Virtual Machines**
-### **Step 1: Create the Virtual Machines**
-1. Open VirtualBox/VMware.
-2. Create the following VMs:
-   - **Windows Server 2022**: Assign 4GB RAM, 50GB storage.
-   - **Windows 10**: Assign 2GB RAM, 30GB storage.
-   - **Ubuntu Server**: Assign 2GB RAM, 20GB storage.
-   - **Kali Linux**: Assign 2GB RAM, 30GB storage.
+## **2. Installing Virtual Machines**
 
-3. Attach the respective ISO files to each VM and boot them up.
+### **Step 1: Set Up VirtualBox or VMware**
+1. Download and install VirtualBox or VMware Workstation Player.
+2. Launch the software and create a **NAT Network** for VM communication:
+   - In VirtualBox: **File > Preferences > Network > Add NAT Network**.
 
-### **Step 2: Network Configuration**
-- Set all VMs to use the **NAT Network** or a **Host-Only Adapter** for isolated communication within the lab.
+### **Step 2: Install Windows Server 2022**
+1. Open VirtualBox/VMware and click **New**.
+2. Configure the VM:
+   - **Name**: `Windows Server 2022`
+   - **Type**: Microsoft Windows
+   - **Version**: Windows 2022 (64-bit)
+   - **Memory**: 4GB
+   - **Storage**: 50GB dynamically allocated
+3. Attach the Windows Server 2022 ISO.
+4. Start the VM and follow the installation steps:
+   - Choose **Custom Installation**.
+   - Select the 50GB disk and proceed.
+   - Set an **Administrator password** during setup.
+5. Once installed, log in with the Administrator account.
 
----
+### **Step 3: Install Windows 10**
+1. Create a new VM with the following settings:
+   - **Name**: `Windows 10`
+   - **Type**: Microsoft Windows
+   - **Version**: Windows 10 (64-bit)
+   - **Memory**: 2GB
+   - **Storage**: 30GB dynamically allocated
+2. Attach the Windows 10 ISO.
+3. Start the VM and follow the installation steps:
+   - Set up a local user account with a password.
+4. Once installed, update the VM via **Windows Update**.
 
-## **3. Configuring Active Directory**
-### **Step 1: Install Active Directory**
-1. Boot into the **Windows Server 2022** VM.
-2. Open **Server Manager** and click **Add roles and features**.
-3. Follow the wizard:
-   - **Role-Based or Feature-Based Installation**.
-   - Select **Active Directory Domain Services (AD DS)**.
-   - Confirm and install.
-
-### **Step 2: Promote to Domain Controller**
-1. After installation, click the notification flag in Server Manager and select **Promote this server to a domain controller**.
-2. Choose:
-   - **Add a new forest** and name the root domain (e.g., `lab.local`).
-3. Configure the following:
-   - **Domain Functional Level**: Windows Server 2022.
-   - **DNS**: Check the box to install the DNS server role.
-   - **Password**: Set a strong password for Directory Services Restore Mode (DSRM).
-4. Complete the wizard and restart the server.
-
----
-
-## **4. Creating Domain Users and Groups**
-1. Open **Active Directory Users and Computers**.
-2. Navigate to your domain (e.g., `lab.local`).
-3. Right-click on **Users** and select **New > User**.
-   - Create test users (e.g., `testuser1`, `testuser2`).
-4. Right-click on **Users** and select **New > Group**.
-   - Create test groups (e.g., `IT_Admins`, `Finance_Team`).
-
----
-
-## **5. Joining Windows 10 to the Domain**
-1. Boot into the **Windows 10** VM.
-2. Open **Settings > System > About > Rename this PC (Advanced)**.
-3. Click **Change** under **Computer Name/Domain Changes**.
-4. Enter the domain name (e.g., `lab.local`) and click **OK**.
-5. Enter the domain administrator credentials when prompted.
-6. Restart the machine to apply the changes.
-
----
-
-## **6. Setting Up Splunk**
-### **Step 1: Install Splunk on Ubuntu Server**
-1. Download Splunk:
+### **Step 4: Install Ubuntu Server (for Splunk)**
+1. Create a new VM with the following settings:
+   - **Name**: `Ubuntu Server`
+   - **Type**: Linux
+   - **Version**: Ubuntu (64-bit)
+   - **Memory**: 2GB
+   - **Storage**: 20GB dynamically allocated
+2. Attach the Ubuntu Server ISO.
+3. Start the VM and follow the installation steps:
+   - Choose minimal installation.
+   - Set up a username and password for the server.
+   - Enable SSH during setup.
+4. After installation, update the system:
    ```bash
-   wget -O splunk.deb https://www.splunk.com/path-to-deb
+   sudo apt update && sudo apt upgrade -y
