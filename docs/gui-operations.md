@@ -1,12 +1,46 @@
 # GUI Operations for Active Directory Home Lab
 
-This document provides step-by-step instructions for setting up and managing your Active Directory (AD) lab using the Windows Server GUI. Screenshots are included for clarity.
+This guide outlines the steps to install and configure Active Directory on a Windows Server, promote the server to a Domain Controller, and join a Windows target machine to the newly created domain.
 
 ---
 
+## **1. Prerequisites**
+Ensure the following before starting:
+- A Windows Server (e.g., Server 2019 or 2022) installed and running.
+- A Windows 10 target machine to join the domain.
+- Both systems are running in the same network, preferably virtualized (e.g., VirtualBox or VMware).
+- Access to administrative accounts on both machines.
+
+---
 ## **1. Setting Up Active Directory**
 
-### **Step 1: Install Active Directory Domain Services (AD DS)**
+### **Step 1: Set a Static IP Address for the Server**
+1. **Open Network Settings**:
+   - Right-click the network icon in the system tray and select **Open Network and Internet Settings**.
+2. **Change Adapter Options**:
+   - Click **Change Adapter Options** > Right-click the network interface > **Properties**.
+3. **Set Static IP**:
+   - Double-click **Internet Protocol Version 4 (TCP/IPv4)**.
+   - Select **Use the following IP address** and enter:
+     - **IP Address**: `192.168.10.7`
+     - **Subnet Mask**: `255.255.255.0`
+     - **Default Gateway**: `192.168.10.1`
+     - **Preferred DNS Server**: `8.8.8.8` (Google DNS)
+4. Save changes and verify using `ipconfig` in Command Prompt:
+   ```cmd
+   ipconfig
+
+### **Step 2: Verify Network Connectivity**
+- Ping Google to check external connectivity:
+  ```cmd
+  ping google.com
+  ```
+- Ping your Splunk server:
+  ```cmd
+  ping 192.168.1.190
+  ```
+  
+### **Step 3: Install Active Directory Domain Services (AD DS)**
 1. Open **Server Manager**.
 2. Click **Manage** > **Add Roles and Features**.
 3. In the wizard:
@@ -16,9 +50,9 @@ This document provides step-by-step instructions for setting up and managing you
 4. Click **Next** and then **Install**.
 5. After installation, click **Promote this server to a domain controller**.
 
-### **Step 2: Promote to a Domain Controller**
+### **Step 4: Promote to a Domain Controller**
 1. In the **Active Directory Domain Services Configuration Wizard**:
-   - **Deployment Configuration**: Choose **Add a new forest** and specify a root domain name (e.g., `example.local`).
+   - **Deployment Configuration**: Choose **Add a new forest** and specify a root domain name (e.g., `Project.local`).
    - **Domain Controller Options**: Set the **Forest functional level** and **Domain functional level** (e.g., Windows Server 2022). Enable **DNS server**.
    - Provide a Directory Services Restore Mode (DSRM) password.
 2. Complete the wizard and restart the server.
@@ -32,51 +66,27 @@ This document provides step-by-step instructions for setting up and managing you
 2. Click **Tools** > **Active Directory Users and Computers**.
 
 ### **Step 2: Create Organizational Units (OUs)**
-1. In the left pane, right-click your domain (e.g., `example.local`) and select **New** > **Organizational Unit**.
-2. Name the OU (e.g., `IT Department`) and click **OK**.
+1. In the left pane, right-click your domain (e.g., `Project.local`) and select **New** > **Organizational Unit**.
+2. Name the OU (e.g., `IT Department` and `HR Department`) and click **OK**.
 
 ### **Step 3: Create a User**
 1. Right-click the OU (e.g., `IT Department`) and select **New** > **User**.
-2. Fill in the user's details (e.g., First Name: John, Last Name: Doe, User logon name: `jdoe`).
+2. Fill in the user's details (e.g., First Name: Aditya, Last Name: Prakash, User logon name: `AP`).
 3. Set a password and configure account options (e.g., require password change on first login).
 
-### **Step 4: Create a Group**
-1. Right-click the OU (e.g., `IT Department`) and select **New** > **Group**.
-2. Name the group (e.g., `IT_Admins`) and select a group scope (e.g., **Global**) and type (e.g., **Security**).
-3. Click **OK**.
-
----
-
-## **3. Configuring Group Policy**
-
-### **Step 1: Open Group Policy Management**
-1. Open **Server Manager**.
-2. Click **Tools** > **Group Policy Management**.
-
-### **Step 2: Create a Group Policy Object (GPO)**
-1. Right-click your domain (e.g., `example.local`) or an OU, and select **Create a GPO in this domain, and Link it here...**.
-2. Name the GPO (e.g., `Password Policy`) and click **OK**.
-
-### **Step 3: Edit the GPO**
-1. Right-click the GPO and select **Edit**.
-2. Navigate to the desired policy path (e.g., `Computer Configuration > Policies > Windows Settings > Security Settings > Account Policies > Password Policy`).
-3. Configure the settings (e.g., set minimum password length to 8 characters).
-
----
-
-## **4. Joining a Windows 10 Client to the Domain**
+## **3. Joining a Windows 10 Client to the Domain**
 
 1. On the Windows 10 client machine:
    - Right-click **This PC** and select **Properties**.
    - Click **Change settings** under **Computer name, domain, and workgroup settings**.
 2. In the **System Properties** window, click **Change**.
-3. Select **Domain**, enter your domain name (e.g., `example.local`), and click **OK**.
+3. Select **Domain**, enter your domain name (e.g., `Project.local`), and click **OK**.
 4. Provide domain admin credentials when prompted.
 5. Restart the machine to apply changes.
 
 ---
 
-## **5. Monitoring with Splunk**
+## **4. Monitoring with Splunk**
 
 ### **Step 1: Install Splunk**
 1. On the Ubuntu server, follow the Splunk installation steps (refer to the `setup-guide.md` for CLI details).
