@@ -15,7 +15,7 @@ This guide walks you through installing and configuring a home lab environment u
 ### **Software Requirements**
 - **Virtualization Software**: [VirtualBox](https://www.virtualbox.org/)
 - **Operating System ISOs**:
-  - [Windows Server 2022](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2022)
+  - [Windows Server 2022](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2022)
   - [Windows 10](https://www.microsoft.com/software-download/windows10ISO)
   - [Ubuntu Server](https://ubuntu.com/download/server)
   - [Kali Linux](https://www.kali.org/get-kali/)
