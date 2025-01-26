@@ -49,7 +49,7 @@ ping google.com
 ```
 ### **Step 3: Install Splunk on Ubuntu**
 Download Splunk
-1. Log in to [Splunk](https://www.splunk.com/).
+1. Log in to [Splunk](https://www.splunk.com/en_us/download.html).
 2. Download the `.deb` package for Splunk Enterprise.
 
 Install Splunk
