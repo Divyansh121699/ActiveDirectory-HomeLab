@@ -24,13 +24,12 @@ This guide walks you through installing and configuring a home lab environment u
 
 ## **2. Installing Virtual Machines**
 
-### **Step 1: Set Up VirtualBox or VMware**
-1. Download and install VirtualBox or VMware Workstation Player.
-2. Launch the software and create a **NAT Network** for VM communication:
-   - In VirtualBox: **File > Preferences > Network > Add NAT Network**.
+### **Step 1: Set Up VirtualBox**
+1. Download and install VirtualBox.
+2. Launch the software and add **Bridged Adapter** to each machine for VM communication:
 
 ### **Step 2: Install Windows Server 2022**
-1. Open VirtualBox/VMware and click **New**.
+1. Open VirtualBox and click **New**.
 2. Configure the VM:
    - **Name**: `Windows Server 2022`
    - **Type**: Microsoft Windows
@@ -49,7 +48,7 @@ This guide walks you through installing and configuring a home lab environment u
    - **Name**: `Windows 10`
    - **Type**: Microsoft Windows
    - **Version**: Windows 10 (64-bit)
-   - **Memory**: 2GB
+   - **Memory**: 4GB
    - **Storage**: 30GB dynamically allocated
 2. Attach the Windows 10 ISO.
 3. Start the VM and follow the installation steps:
@@ -68,6 +67,21 @@ This guide walks you through installing and configuring a home lab environment u
    - Choose minimal installation.
    - Set up a username and password for the server.
    - Enable SSH during setup.
+4. After installation, update the system:
+   ```bash
+   sudo apt update && sudo apt upgrade -y
+
+### **Step 5: Install Kali Linux**
+1. Create a new VM with the following settings:
+   - **Name**: `Kali Linux`
+   - **Type**: Linux
+   - **Version**: Debian (64-bit)
+   - **Memory**: 4GB
+   - **Storage**: 20GB dynamically allocated
+2. Attach the Kali Linux ISO.
+3. Start the VM and follow the installation steps:
+   - Set up a root password.
+   - Choose default tools during setup.
 4. After installation, update the system:
    ```bash
    sudo apt update && sudo apt upgrade -y
