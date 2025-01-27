@@ -17,7 +17,7 @@ This guide provides solutions to common issues you may encounter while setting u
 - **Cause**: Incorrect network adapter settings.
 - **Solution**:
   1. Open VirtualBox, select the VM, and go to **Settings > Network**.
-  2. Ensure the adapter is set to **Bridged Adapter** or **NAT**.
+  2. Ensure the adapter is set to **Bridged Adapter**.
   3. Restart the VM after making changes.
 
 ---
@@ -30,31 +30,10 @@ This guide provides solutions to common issues you may encounter while setting u
   1. Ensure the **Active Directory Domain Services** role is installed.
   2. Set the **Preferred DNS Server** to the server’s own IP address.
   3. Reboot the server and retry the promotion.
-
-### **2.2 DNS Server Not Resolving**
-- **Cause**: DNS service is not running.
-- **Solution**:
-  1. Open **Services.msc** on the server.
-  2. Locate the **DNS Server** service and start it if it’s stopped.
-  3. Verify DNS settings using:
-     ```bash
-     nslookup domain.local
-     ```
-
+     
 ---
 
-## **3. User and Group Management Issues**
-
-### **3.1 Cannot Create Users or Groups**
-- **Cause**: Insufficient permissions or missing AD tools.
-- **Solution**:
-  1. Verify you are logged in as a user with administrative privileges.
-  2. Ensure the **RSAT: Active Directory Tools** feature is installed.
-  3. Open **Active Directory Users and Computers (ADUC)** to create users/groups.
-
----
-
-## **4. Splunk Issues**
+## **3. Splunk Issues**
 
 ### **4.1 Splunk Web Interface Not Loading**
 - **Cause**: Splunk service is not running or incorrect firewall rules.
@@ -68,8 +47,8 @@ This guide provides solutions to common issues you may encounter while setting u
      sudo ufw allow 8000
      ```
 
-### **4.2 Logs Not Ingesting into Splunk**
-- **Cause**: Incorrect configuration in inputs.conf or outputs.conf.
+### **3.2 Logs Not Ingesting into Splunk**
+- **Cause**: Incorrect configuration in [inputs.conf](https://github.com/Divyansh121699/ActiveDirectory-HomeLab/blob/main/configs/splunk-inputs.md) or [outputs.conf](https://github.com/Divyansh121699/ActiveDirectory-HomeLab/blob/main/configs/splunk-outputs.md).
 - **Solution**:
   1. Verify the file paths in `inputs.conf`.
   2. Restart Splunk to apply changes:
@@ -79,7 +58,7 @@ This guide provides solutions to common issues you may encounter while setting u
 
 ---
 
-## **5. Kali Linux Issues**
+## **4. Kali Linux Issues**
 
 ### **5.1 Cannot Connect to Target Machines**
 - **Cause**: Firewall or network misconfiguration.
@@ -95,9 +74,9 @@ This guide provides solutions to common issues you may encounter while setting u
 
 ---
 
-## **6. Telemetry and Logging Issues**
+## **5. Telemetry and Logging Issues**
 
-### **6.1 Telemetry Not Generating in Sysmon**
+### **5.1 Telemetry Not Generating in Sysmon**
 - **Cause**: Sysmon is not properly configured or running.
 - **Solution**:
   1. Verify Sysmon is installed:
@@ -109,7 +88,7 @@ This guide provides solutions to common issues you may encounter while setting u
      sysmon -accepteula -i sysmon-config.xml
      ```
 
-### **6.2 Logs Missing in Splunk**
+### **5.2 Logs Missing in Splunk**
 - **Cause**: Incorrect log forwarding or indexing configuration.
 - **Solution**:
   1. Verify the Universal Forwarder is configured correctly on the client machines.
@@ -117,7 +96,7 @@ This guide provides solutions to common issues you may encounter while setting u
 
 ---
 
-## **7. General Tips**
+## **6. General Tips**
 - **Check Logs**: Review logs for error messages:
   - AD logs: `Event Viewer > Windows Logs > System`.
   - Splunk logs: `/opt/splunk/var/log/splunk/`.
@@ -125,5 +104,3 @@ This guide provides solutions to common issues you may encounter while setting u
 - **Ask for Help**: If you’re stuck, leave a comment in the project repository or related forums.
 
 ---
-
-Feel free to contribute additional troubleshooting tips by submitting a pull request!
