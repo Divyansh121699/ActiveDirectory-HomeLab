@@ -66,13 +66,13 @@ Ensure the following before starting:
 2. Click **Tools** > **Active Directory Users and Computers**.
 
 ### **Step 2: Create Organizational Units (OUs)**
-1. In the left pane, right-click your domain (e.g., `Project.local`) and select **New** > **Organizational Unit**.
+1. Right-click your domain (e.g., `Project.local`) in the left pane and select **New** > **Organizational Unit**.
 2. Name the OU (e.g., `IT Department` and `HR Department`) and click **OK**.
 
 ### **Step 3: Create a User**
 1. Right-click the OU (e.g., `IT Department`) and select **New** > **User**.
 2. Fill in the user's details (e.g., First Name: Aditya, Last Name: Prakash, User logon name: `AP`).
-3. Set a password and configure account options (e.g., require password change on first login).
+3. Set a password and configure account options (e.g., require password change on the first login).
 
 ## **3. Joining a Windows 10 Client to the Domain**
 
@@ -86,26 +86,10 @@ Ensure the following before starting:
 
 ---
 
-## **4. Monitoring with Splunk**
+## **4. Log In as a Domain User**
 
-### **Step 1: Install Splunk**
-1. On the Ubuntu server, follow the Splunk installation steps (refer to the `setup-guide.md` for CLI details).
-2. Access the Splunk web interface via `http://<server-ip>:8000`.
-
-### **Step 2: Configure Data Inputs**
-1. In the Splunk GUI, go to **Settings** > **Data Inputs**.
-2. Add a new data input for **Windows Event Logs**.
-3. Specify the event types to monitor (e.g., Security, System, Application).
-
----
-
-## **6. Simulating an Attack with Kali Linux**
-
-### **Step 1: Launch Kali Linux**
-1. Boot up the Kali Linux VM.
-2. Open a terminal.
-
-### **Step 2: Perform a Brute Force Attack**
-1. Use a tool like `hydra` or `medusa` to simulate a brute force attack:
-   ```bash
-   hydra -l admin -P /usr/share/wordlists/rockyou.txt rdp://<target-ip>
+1. On the Windows 10 login screen, select **Other User**.
+2. Enter the domain and username:
+   - **Username**: `Project\AP`.
+   - **Password**: The user's password was set earlier.
+3. Log in and verify successful domain authentication.
