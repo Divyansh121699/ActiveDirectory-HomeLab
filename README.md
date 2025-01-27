@@ -18,20 +18,20 @@ The project covers:
 ## **2. Folder Structure**
 
 ### **Configuration Files**
-- **[Sysmon Configuration File](sysmon-config.xml)**: Sysmon rules for monitoring malicious behaviors.
-- **[Splunk Outputs.conf](splunk-outputs.md)**: Configuration for Splunk forwarding.
-- **[Splunk Inputs.conf](splunk-inputs.md)**: Configuration for event log ingestion.
+- **[Sysmon Configuration File](configs/sysmon-config.xml)**: Sysmon rules for monitoring malicious behaviors.
+- **[Splunk Outputs.conf](configs/splunk-outputs.md)**: Configuration for Splunk forwarding.
+- **[Splunk Inputs.conf](configs/splunk-inputs.md)**: Configuration for event log ingestion.
 
 ### **Guides and Documentation**
-- **[Setup Guide](setup-guide.md)**: Step-by-step instructions for setting up the home lab environment.
-- **[Splunk Setup](Splunk-setup.md)**: Detailed guide to configuring Splunk on an Ubuntu server.
-- **[Splunk Universal Forwarder & Sysmon Setup](Splunk%20Universal%20Forwarder%20%26%20Sysmon%20Setup.md)**: Guide for installing and configuring Sysmon and Splunk Universal Forwarder.
-- **[Kali Linux Attacks & Atomic Red Team Guide](Kali%20Linux%20attacks%20%26%20Atomic%20Red%20Team%20guide.md)**: Steps for simulating attacks and analyzing telemetry.
-- **[Active Directory Setup Guide](AD-Setup.md)**: Instructions for configuring Active Directory and joining client machines to the domain.
-- **[Troubleshooting Guide](troubleshooting.md)**: Solutions to common issues encountered during the setup process.
+- **[Setup Guide](docs/setup-guide.md)**: Step-by-step instructions for setting up the home lab environment.
+- **[Splunk Setup](docs/Splunk-setup.md)**: Detailed guide to configuring Splunk on an Ubuntu server.
+- **[Splunk Universal Forwarder & Sysmon Setup](docs/Splunk%20Universal%20Forwarder%20&%20Sysmon%20Setup.md)**: Guide for installing and configuring Sysmon and Splunk Universal Forwarder.
+- **[Kali Linux Attacks & Atomic Red Team Guide](docs/Kali%20Linux%20attacks%20%26%20Atomic%20Red%20Team%20guide.md)**: Steps for simulating attacks and analyzing telemetry.
+- **[Active Directory Setup Guide](docs/AD-Setup.md)**: Instructions for configuring Active Directory and joining client machines to the domain.
+- **[Troubleshooting Guide](docs/troubleshooting.md)**: Solutions to common issues encountered during the setup process.
 
-### **Diagrams**
-- **[Active Directory Network Diagram](Active%20Directory%20Network%20Diagram%20(1).png)**: Visual representation of the network setup.
+### **Network Diagram**
+**![Active Directory Network Diagram](https://github.com/Divyansh121699/ActiveDirectory-HomeLab/blob/main/docs/Active%20Directory%20Network%20Diagram.png)**
 
 ---
 
@@ -48,31 +48,21 @@ The project covers:
 ---
 
 ## **4. Setup Instructions**
-1. Follow the **[Setup Guide](setup-guide.md)** to install virtual machines and configure the network.
-2. Install and configure Splunk by referencing the **[Splunk Setup Guide](Splunk-setup.md)**.
-3. Configure Sysmon and Splunk Universal Forwarder using the **[Sysmon Setup Guide](Splunk%20Universal%20Forwarder%20%26%20Sysmon%20Setup.md)**.
-4. Set up and use Kali Linux for attack simulations as described in the **[Kali Linux Guide](Kali%20Linux%20attacks%20%26%20Atomic%20Red%20Team%20guide.md)**.
-5. Configure Active Directory and join client machines using the **[AD Setup Guide](AD-Setup.md)**.
+1. Follow the **[Setup Guide](docs/setup-guide.md)** to install virtual machines and configure the network.
+2. Install and configure Splunk by referencing the **[Splunk Setup Guide](docs/Splunk-setup.md)**.
+3. Configure Sysmon and Splunk Universal Forwarder using the **[Sysmon Setup Guide](docs/Splunk%20Universal%20Forwarder%20%26%20Sysmon%20Setup.md)**.
+4. Set up and use Kali Linux for attack simulations as described in the **[Kali Linux Guide](docs/Kali%20Linux%20attacks%20%26%20Atomic%20Red%20Team%20guide.md)**.
+5. Configure Active Directory and join client machines using the **[AD Setup Guide](docs/AD-Setup.md)**.
 
 ---
 
 ## **5. Troubleshooting**
-If you encounter issues during setup or operation, consult the **[Troubleshooting Guide](troubleshooting.md)** for solutions to common problems.
+If you encounter issues during setup or operation, consult the **[Troubleshooting Guide](docs/troubleshooting.md)** for solutions to common problems.
 
 ---
 
-## **6. Contributions**
-Contributions are welcome! If you have suggestions or encounter issues, feel free to open an issue or submit a pull request.
-
----
-
-## **7. License**
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-## **8. References**
+## **6. References**
 - [Splunk Documentation](https://docs.splunk.com)
 - [Sysinternals Sysmon](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon)
-- [Kali Linux](https://www.kali.org/)
+- [Kali Linux](https://www.kali.org/docs/)
 - [Atomic Red Team](https://github.com/redcanaryco/atomic-red-team)
