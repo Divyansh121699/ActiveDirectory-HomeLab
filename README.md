@@ -61,7 +61,14 @@ If you encounter issues during setup or operation, consult the **[Troubleshootin
 
 ---
 
-## **6. References**
+## **6. Acknowledgments**
+This project was inspired by the following YouTube tutorial series:
+- **[Active Directory Project Tutorial](https://www.youtube.com/watch?v=5OessbOgyEo&t=55s)**  
+  Special thanks to the **MyDFIR** for providing detailed guidance on setting up an Active Directory lab environment.
+
+---
+
+## **7. References**
 - [Splunk Documentation](https://docs.splunk.com)
 - [Sysinternals Sysmon](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon)
 - [Kali Linux](https://www.kali.org/docs/)
